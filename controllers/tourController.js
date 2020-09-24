@@ -35,10 +35,6 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
     {
       $sort: { avgPrice: 1 },
     },
-    // filter returns all except NOT EQUAL TO "EASY"
-    // {
-    //   $match: { _id: { $ne: 'EASY' } },
-    // },
   ]);
 
   res.status(200).json({
