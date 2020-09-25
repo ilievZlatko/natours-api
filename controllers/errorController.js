@@ -34,16 +34,15 @@ const sendErrorProd = (err, req, res) => {
   }
 
   if (err.isOperational) {
-    res.status(err.statusCode).render('error', {
+    return res.status(err.statusCode).render('error', {
       title: 'Something went wrong!',
       msg: err.message,
     });
-  } else {
-    res.status(err.statusCode).render('error', {
-      title: 'Something went wrong!',
-      msg: 'Please try again later',
-    });
   }
+  return res.status(err.statusCode).render('error', {
+    title: 'Something went wrong!',
+    msg: 'Please try again later',
+  });
 };
 
 const handleCastErrorDB = err => {
@@ -76,6 +75,7 @@ module.exports = (err, req, res, next) => {
     sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
+    error.message = err.message;
 
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
