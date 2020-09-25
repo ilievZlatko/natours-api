@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 
 app.use('/api', limiter);
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(
@@ -69,6 +71,7 @@ app.use(
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
   next();
 });
 
