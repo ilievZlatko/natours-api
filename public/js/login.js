@@ -1,4 +1,7 @@
-const login = async (email, password) => {
+/* eslint-disable */
+import { showAlert } from './alerts';
+
+export const login = async (email, password) => {
   try {
     const response = await fetch('http://localhost:5000/api/v1/users/login', {
       method: 'POST',
@@ -17,21 +20,33 @@ const login = async (email, password) => {
     console.log(res);
 
     if (res.status === 'success') {
-      alert('Logged in successfully!');
+      showAlert('success', 'Logged in successfully!');
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     } else if (res.status === 'fail') {
-      alert(res.message);
+      showAlert('error', res.message);
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-document.querySelector('.form').addEventListener('submit', e => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  login(email, password);
-});
+export const logout = async () => {
+  try {
+    const fetchData = await fetch('http://localhost:5000/api/v1/users/logout', {
+      method: 'GET',
+    });
+    const res = await fetchData.json();
+
+    console.log(res);
+
+    if (res.status === 'success') {
+      location.reload();
+    } else {
+      showAlert('error', 'Error logging out, try again!');
+    }
+  } catch (err) {
+    showAlert('error', 'Error logging out, try again!');
+  }
+};

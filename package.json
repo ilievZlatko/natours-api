@@ -8,7 +8,9 @@
     "start:prod": "NODE_ENV=production nodemon server.js",
     "import:data": "node dev-data/data/import-dev-data.js --import",
     "drop:db": "node dev-data/data/import-dev-data.js --delete",
-    "debug": "ndb server.js"
+    "debug": "ndb server.js",
+    "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },
   "author": "Zlatko Iliev",
   "license": "MIT",
@@ -26,12 +28,14 @@
     "mongoose": "^5.10.3",
     "morgan": "^1.10.0",
     "nodemailer": "^6.4.11",
+    "parcel-bundler": "^1.12.4",
     "pug": "^3.0.0",
     "slugify": "^1.4.5",
     "validator": "^13.1.1",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.11.5",
     "eslint": "^7.8.1",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
