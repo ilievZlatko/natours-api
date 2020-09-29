@@ -10,7 +10,7 @@ export const updateSettings = async (data, type) => {
 
     const roughRes = await fetch(url, {
       method: 'PATCH',
-      body: JSON.stringify(data),
+      body: data,
     });
 
     const res = await roughRes.json();
