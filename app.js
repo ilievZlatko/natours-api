@@ -8,6 +8,8 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -68,6 +70,9 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
+
+// Swagger docs
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // ERROR HANDLING
 app.all('*', (req, res, next) => {
