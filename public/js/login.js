@@ -3,7 +3,7 @@ import { showAlert } from './alerts';
 
 export const login = async (email, password) => {
   try {
-    const response = await fetch('http://localhost:5000/api/v1/users/login', {
+    const response = await fetch('/api/v1/users/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -32,7 +32,7 @@ export const login = async (email, password) => {
 
 export const logout = async () => {
   try {
-    const fetchData = await fetch('http://localhost:5000/api/v1/users/logout', {
+    const fetchData = await fetch('/api/v1/users/logout', {
       method: 'GET',
     });
     const res = await fetchData.json();
