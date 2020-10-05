@@ -17,8 +17,6 @@ export const login = async (email, password) => {
 
     const res = await response.json();
 
-    console.log(res);
-
     if (res.status === 'success') {
       showAlert('success', 'Logged in successfully!');
       window.setTimeout(() => {
@@ -38,8 +36,6 @@ export const logout = async () => {
       method: 'GET',
     });
     const res = await fetchData.json();
-
-    console.log(res);
 
     if (res.status === 'success') {
       location.reload();
