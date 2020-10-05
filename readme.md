@@ -1,3 +1,3 @@
 # Natours Application
 
-Build using modern technologies: nodejs, express, mongoDB, mognoose.
+Build using modern technologies: nodejs, express, mongoDB, mognoose and more... 🙂.
