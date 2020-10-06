@@ -30,10 +30,9 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // MIDDLEWARES
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(helmet());
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet());
 const limiter = rateLimit({
   max: 500,
   windowMs: 60 * 60 * 1000,
