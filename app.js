@@ -22,6 +22,9 @@ const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
 
+// TRUSTED PROXIES
+app.enable('trust proxy');
+
 // TEMPLATING ENGINE
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
