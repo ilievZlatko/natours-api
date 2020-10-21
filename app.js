@@ -34,6 +34,17 @@ app.use(cors());
 app.options('*', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", 'https:', 'http:', 'data:', 'ws:'],
+      baseUri: ["'self'"],
+      fontSrc: ["'self'", 'https:', 'http:', 'data:'],
+      scriptSrc: ["'self'", 'https:', 'http:', 'blob:'],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https:', 'http:'],
+    },
+  })
+);
 const limiter = rateLimit({
   max: 500,
   windowMs: 60 * 60 * 1000,
